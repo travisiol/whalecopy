@@ -1,0 +1,292 @@
+export type Schedule = "daily" | "quarterly";
+
+export type Institution = {
+  slug: string;
+  name: string;
+  manager: string;
+  /** Shown above the name when the desk is better known by its founder. */
+  billing?: string;
+  schedule: Schedule;
+  /** Disclosed US equity holdings, rounded for display. */
+  aum: string;
+  /** Copyable buys over the trailing 90 days, out of every disclosed buy. */
+  copyable: number;
+  buys: number;
+  /** How the roster describes the freshness of the filing. */
+  asOf: string;
+  strategy: string;
+  /** Longer note, shown on the institution page. */
+  note: string;
+};
+
+export const institutions: Institution[] = [
+  {
+    slug: "ark",
+    name: "ARK Invest",
+    manager: "Cathie Wood",
+    schedule: "daily",
+    aum: "$14B",
+    copyable: 9,
+    buys: 73,
+    asOf: "Trades through Sep 5",
+    strategy:
+      "Concentrated bets on AI, robotics, genomics, fintech and space — and the only desk here that publishes what it did the evening it did it.",
+    note: "ARK files a trade sheet for every active ETF after each close, which makes it the shortest gap on the roster between a decision and a copy. The same stock bought across ARKK, ARKW and ARKQ on one day counts as one disclosure and fires one copy.",
+  },
+  {
+    slug: "berkshire",
+    name: "Berkshire Hathaway",
+    manager: "Warren Buffett",
+    schedule: "quarterly",
+    aum: "$299B",
+    copyable: 1,
+    buys: 8,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy:
+      "Durable businesses bought at a sane price, then left alone for a decade or three.",
+    note: "The largest disclosed equity book in the world, and one of the slowest. Berkshire moves in size but rarely, so quarters can pass with nothing new to copy.",
+  },
+  {
+    slug: "bridgewater",
+    name: "Bridgewater Associates",
+    manager: "Nir Bar Dea",
+    billing: "founded by Ray Dalio",
+    schedule: "quarterly",
+    aum: "$24B",
+    copyable: 11,
+    buys: 56,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy:
+      "Systematic macro spread across hundreds of names — the widest filing on the roster.",
+    note: "The equity sleeve is a diversified overlay rather than a stock-picking book, which is why these filings contain more individual buys than anyone else's.",
+  },
+  {
+    slug: "duquesne",
+    name: "Duquesne Family Office",
+    manager: "Stanley Druckenmiller",
+    schedule: "quarterly",
+    aum: "$4.4B",
+    copyable: 6,
+    buys: 30,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy:
+      "Few positions, sized hard, rotated without sentiment. One of the great records in the business.",
+    note: "A family office now rather than an outside fund, still filing quarterly. Turnover is high enough that a filing is a snapshot, not a plan.",
+  },
+  {
+    slug: "appaloosa",
+    name: "Appaloosa",
+    manager: "David Tepper",
+    schedule: "quarterly",
+    aum: "$7.5B",
+    copyable: 7,
+    buys: 17,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy:
+      "Contrarian and concentrated, busiest when everyone else is scared.",
+    note: "The book leans into distress and dislocation. Expect long stretches of nothing, then a quarter with real movement.",
+  },
+  {
+    slug: "pershing",
+    name: "Pershing Square",
+    manager: "Bill Ackman",
+    schedule: "quarterly",
+    aum: "$14B",
+    copyable: 0,
+    buys: 0,
+    asOf: "Q1 2026 · filed May 15",
+    strategy:
+      "Roughly a dozen names, held for years, and argued for loudly in public.",
+    note: "Among the most concentrated books on the roster. A quarter with zero new buys is normal here, not a gap in the data.",
+  },
+  {
+    slug: "tiger",
+    name: "Tiger Global",
+    manager: "Chase Coleman",
+    schedule: "quarterly",
+    aum: "$24B",
+    copyable: 4,
+    buys: 15,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "Growth and technology, across both public and private markets.",
+    note: "Only the public sleeve shows up in a filing. A large part of what this desk owns is private and never appears in the feed.",
+  },
+  {
+    slug: "coatue",
+    name: "Coatue Management",
+    manager: "Philippe Laffont",
+    schedule: "quarterly",
+    aum: "$49B",
+    copyable: 8,
+    buys: 18,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "A technology crossover book that trades the public side actively.",
+    note: "Heavy in the megacaps that are also best supported on the tokenized side, so an unusually high share of its buys are copyable.",
+  },
+  {
+    slug: "third-point",
+    name: "Third Point",
+    manager: "Dan Loeb",
+    schedule: "quarterly",
+    aum: "$4.6B",
+    copyable: 4,
+    buys: 29,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "Event-driven value with a habit of turning activist.",
+    note: "Positions usually follow a catalyst — a spin-off, a proxy fight, a restructuring — which the filing itself never explains.",
+  },
+  {
+    slug: "soros",
+    name: "Soros Fund Management",
+    manager: "Dawn Fitzpatrick",
+    billing: "founded by George Soros",
+    schedule: "quarterly",
+    aum: "$6.1B",
+    copyable: 9,
+    buys: 32,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy:
+      "The family office running on a macro legacy, now broadly diversified.",
+    note: "The equity book turns over quickly, and the macro views behind it are expressed elsewhere, in instruments a filing never shows.",
+  },
+  {
+    slug: "baupost",
+    name: "Baupost Group",
+    manager: "Seth Klarman",
+    schedule: "quarterly",
+    aum: "$5.4B",
+    copyable: 1,
+    buys: 9,
+    asOf: "Q2 2026 · filed Aug 13",
+    strategy: "Deep value, a margin of safety, and a lot of patience in cash.",
+    note: "Much of what this desk does is in credit and private claims. The listed equity slice is the small visible corner of the book.",
+  },
+  {
+    slug: "himalaya",
+    name: "Himalaya Capital",
+    manager: "Li Lu",
+    schedule: "quarterly",
+    aum: "$3.7B",
+    copyable: 0,
+    buys: 2,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "A handful of businesses, understood deeply and held for years.",
+    note: "One of the smallest and most static filings on the roster. New buys are rare by design.",
+  },
+  {
+    slug: "akre",
+    name: "Akre Capital",
+    manager: "Akre Capital Management",
+    billing: "founded by Chuck Akre",
+    schedule: "quarterly",
+    aum: "$5.1B",
+    copyable: 0,
+    buys: 2,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy:
+      "Compounders only: a good business, good people, and somewhere to reinvest the cash.",
+    note: "The book barely changes from quarter to quarter, which is the thesis rather than a lack of activity.",
+  },
+  {
+    slug: "fundsmith",
+    name: "Fundsmith",
+    manager: "Terry Smith",
+    schedule: "quarterly",
+    aum: "$14B",
+    copyable: 2,
+    buys: 15,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy:
+      "Buy good companies, avoid overpaying, then do as little as possible.",
+    note: "A quality-growth book with famously low turnover, concentrated in consumer and healthcare names.",
+  },
+  {
+    slug: "altimeter",
+    name: "Altimeter Capital",
+    manager: "Brad Gerstner",
+    schedule: "quarterly",
+    aum: "$9.8B",
+    copyable: 7,
+    buys: 15,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "Technology with conviction, sized up when the thesis holds.",
+    note: "A concentrated software and internet book that adds to winners rather than spreading out.",
+  },
+  {
+    slug: "gates-trust",
+    name: "Gates Foundation Trust",
+    manager: "Michael Larson",
+    schedule: "quarterly",
+    aum: "$34B",
+    copyable: 0,
+    buys: 2,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "The endowment behind the world's largest private foundation.",
+    note: "Managed against the foundation's spending obligations, not for returns alone. Changes are infrequent and usually large.",
+  },
+  {
+    slug: "elliott",
+    name: "Elliott Investment Management",
+    manager: "Paul Singer",
+    schedule: "quarterly",
+    aum: "$14B",
+    copyable: 1,
+    buys: 4,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "Activist stakes taken to force a company to change course.",
+    note: "A position here is usually the opening move in a campaign. The filing shows the stake and none of the intent.",
+  },
+  {
+    slug: "viking",
+    name: "Viking Global",
+    manager: "Andreas Halvorsen",
+    schedule: "quarterly",
+    aum: "$35B",
+    copyable: 6,
+    buys: 22,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "Fundamental long/short research across every sector.",
+    note: "A filing shows only the long side. The hedges sitting against these positions are never disclosed.",
+  },
+  {
+    slug: "lone-pine",
+    name: "Lone Pine Capital",
+    manager: "Lone Pine Capital",
+    billing: "founded by Stephen Mandel",
+    schedule: "quarterly",
+    aum: "$16B",
+    copyable: 3,
+    buys: 20,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "Research-driven growth, run long and short.",
+    note: "One of the original Tiger cubs. The public book stays concentrated in large-cap growth.",
+  },
+  {
+    slug: "d1",
+    name: "D1 Capital Partners",
+    manager: "Dan Sundheim",
+    schedule: "quarterly",
+    aum: "$35B",
+    copyable: 6,
+    buys: 28,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy: "Growth at scale, public and private, with real position sizes.",
+    note: "Active enough that consecutive filings usually differ in a dozen places or more.",
+  },
+  {
+    slug: "icahn",
+    name: "Icahn Enterprises",
+    manager: "Carl Icahn",
+    schedule: "quarterly",
+    aum: "$8.3B",
+    copyable: 0,
+    buys: 2,
+    asOf: "Q2 2026 · filed Aug 14",
+    strategy:
+      "Activism, by the person who more or less invented the modern version.",
+    note: "A small number of very large stakes, held while a fight plays out in public.",
+  },
+];
+
+export const institutionBySlug = (slug: string) =>
+  institutions.find((i) => i.slug === slug);

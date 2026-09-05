@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/*
+ * WHALECOPY — hedge fund buys in, tokenized stock out.
+ *
+ * The ground is a deep institutional navy, the colour of a terminal at
+ * night, and it never lightens. Everything that is merely information —
+ * a filing date, a share count, a fund name — is set in white or a washed
+ * periwinkle on that navy, and nothing about it glows.
+ *
+ * Mint is reserved for one idea only: a disclosure that can actually be
+ * copied. A row in the feed turns mint when the stock behind it has a
+ * tokenized market; it stays grey when it does not. Buttons that start a
+ * copy are mint. Nothing else is. On a page that is mostly a list of other
+ * people's trades, that reservation is what separates the part you can act
+ * on from the part you can only read.
+ *
+ * The geometry is soft — 1.5rem corners, generous panels — because the
+ * product is a consumer account, not a trading desk. Poppins carries the
+ * headlines with a little weight and roundness; Inter does everything that
+ * has to be read closely.
+ */
+:root {
+  --deep: #061247;
+  --deep-raised: #16205c;
+  --deep-panel: #0d1a52;
+  --deep-line: #3b4a86;
+
+  --paper: #ffffff;
+  --paper-soft: #ccd3f2;
+  --paper-muted: #8e9bd0;
+
+  --mint: #82e094;
+  --mint-bright: #a8ecb5;
+  --mint-deep: #1d6f36;
+
+  --rule: rgba(204, 211, 242, 0.16);
+  --rule-strong: rgba(204, 211, 242, 0.32);
+
+  --gain: #82e094;
+  --loss: #f08a8a;
+  --pending: #f2d06b;
+}
+
+@theme inline {
+  --color-deep: var(--deep);
+  --color-deep-raised: var(--deep-raised);
+  --color-deep-panel: var(--deep-panel);
+  --color-deep-line: var(--deep-line);
+
+  --color-paper: var(--paper);
+  --color-paper-soft: var(--paper-soft);
+  --color-paper-muted: var(--paper-muted);
+
+  --color-mint: var(--mint);
+  --color-mint-bright: var(--mint-bright);
+  --color-mint-deep: var(--mint-deep);
+
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-gain: var(--gain);
+  --color-loss: var(--loss);
+  --color-pending: var(--pending);
+
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-card: 1.5rem;
+  --radius-panel: 2rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--deep);
+}
+
+body {
+  background: var(--deep);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--mint);
+  color: var(--deep);
+}
+
+/* Custom classes live in a layer so plain utilities still win over them.
+   Outside a layer they would beat every utility in the file. */
+@layer components {
+  .panel {
+    border-radius: var(--radius-card);
+    border: 1px solid var(--rule);
+    background: var(--deep-panel);
+  }
+
+  .panel-raised {
+    border-radius: var(--radius-card);
+    border: 1px solid var(--rule);
+    background: var(--deep-raised);
+  }
+
+  /* The one soft light in the layout: a wide mint bloom behind the hero,
+     low enough that it reads as depth rather than as a highlight. */
+  .bloom::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 70%;
+    background: radial-gradient(
+      60% 60% at 50% 0%,
+      rgba(130, 224, 148, 0.16),
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .rule-grid {
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(70% 60% at 50% 30%, #000, transparent 75%);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
